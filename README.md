@@ -1,4 +1,4 @@
-Interact_to_edit (How it came into being)
+Interact to edit (How it came into being)
 ================
 Initially , my challange was to have some interactive method to edit the Table cell in an Web Application, without opening 
 without opening any dialogue or popup, and that is very easy and intuitively in use. So I came up with an idea of "Double 
