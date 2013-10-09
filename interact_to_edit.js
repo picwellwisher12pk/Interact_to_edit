@@ -8,40 +8,61 @@
 				eventtype : "dblclick"
 			}, options
 		);
-
-		var selected_node ;
+		
+		$.menu = new Object();
+		$.menu.i = new Object();
+		$.menu.i.selected_node ;
+		var selected = "none";
+		
 
 		$(settings.target).on( settings.eventtype , function()
 		{	
-			// console.log("Double Clicked on the target node")
-			var selected_node = $(this);
+			
+			
+			if($("td.selected").size() > 0)
+			{ //if something is already selected
+				
+				var new_value = $($.menu.i.selected_node).find("input.edit-frame").val();
+				
+				$($.menu.i.selected_node).find("input.edit-frame").remove();
+			   	$($.menu.i.selected_node).text(new_value);
+			   	$($.menu.i.selected_node).removeClass("selected")
+
+
+			}
+
+			if($("td.selected").size() == 0)
+			{
+			$(this).addClass("selected");
+			$.menu.i.selected_node = $(this);
 			var selected_node_value = $(this).text();
+
 			// console.log("Value of selected node captured :  "+ selected_node_value);
 			$(this).text("");
 			$(this).append("<input type='text' class='edit-frame' value='"+selected_node_value+"'>")
-			
+			$(this).find("input.edit-frame").focus();
+			$(this).find("inpu.edit-frame").select();
+
+
 			$(this).find("input.edit-frame").keypress(function (e) 
 			 { 
 			 	
 				if (e.which == 13) 
 				{
-					console.log($(this));
 			   		var new_value = $(this).val();
 			   		// console.log("new value :" + new_value);
 			   		$(this).remove();
-			   		$(selected_node).text(new_value);
+			   		$($.menu.i.selected_node).text(new_value);
 			    	return false;    
 				}
 			 });
+			}
 		});
+		
 
 		
 
 
 
-		return this;
+		return false;
 	};
-	
-
-	
-
