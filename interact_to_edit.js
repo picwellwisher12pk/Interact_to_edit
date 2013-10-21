@@ -1,4 +1,3 @@
-
 $.fn.interact_to_edit = function(options)
 {
 	var settings = $.extend
@@ -44,6 +43,16 @@ $.fn.interact_to_edit = function(options)
 		   		$(this).remove();
 		   		$($.menu.i.selected_node).text(new_value);
 		    	return false;    
+			}
+		 });
+		$(this).find("input.edit-frame").keyup(function (e) 
+		 { 
+			if (e.which == 27) 
+			{
+		   		var new_value = $($.menu.i.selected_node).find("input.edit-frame").val();
+				$($.menu.i.selected_node).find("input.edit-frame").remove();
+			   	$($.menu.i.selected_node).text(new_value);
+			   	$($.menu.i.selected_node).removeClass("selected")  
 			}
 		 });
 		$(this).find("input.edit-frame").focusout(function (e) 
